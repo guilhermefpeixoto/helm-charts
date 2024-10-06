@@ -3,16 +3,16 @@ entries:
   poi-project:
   - apiVersion: v2
     appVersion: "1.0"
-    created: "2024-10-06T19:46:08.678373714-03:00"
+    created: "2024-10-06T20:00:10.739364615-03:00"
     dependencies:
     - name: metrics-server
       repository: https://kubernetes-sigs.github.io/metrics-server/
       version: 3.12.1
     description: A Helm chart for the POI project.
-    digest: 116d401d7d2283d34c65c38ef2fc5ff74dac38ab379b0e9b29ba80be2298f3df
+    digest: 03f6e129107700d94b12a533c8b80ffb4a8f48a19d8592719ca887326bdeabd9
     name: poi-project
     type: application
     urls:
     - https://guilhermefpeixoto.github.io/helm-charts/charts/poi-project-0.1.0.tgz
     version: 0.1.0
-generated: "2024-10-06T19:46:08.676747826-03:00"
+generated: "2024-10-06T20:00:10.737448315-03:00"
