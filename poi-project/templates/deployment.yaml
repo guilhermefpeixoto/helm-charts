@@ -1,0 +1,31 @@
+{{ include "validate.resources" . }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ required "A valid appName is required." .Values.appName }}-deployment
+  namespace: {{ .Values.namespace | default "poi-project" }}
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  replicas: {{ .Values.spec.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: fibonacci-poi
+          image: samssiq/poi:atv4
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: {{ .Values.resources.requests.memory | default "40Mi" }}
+              cpu: {{ .Values.resources.requests.cpu | default "200m" }}
+            limits:
+              memory: "400Mi"
+              cpu: "200m"

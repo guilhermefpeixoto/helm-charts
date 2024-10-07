@@ -1,0 +1,18 @@
+metrics-server:
+  args:
+    - --kubelet-insecure-tls
+      
+appName: fib-poi
+namespace: poi-project
+spec:
+ minReplicas: 1
+ maxReplicas: 10
+ ports:
+   nodePort: 30002
+ replicas: 1
+resources:
+  requests:
+    memory: "40Mi"
+    cpu: "200m"
+metrics:
+  averageUtilization: 75

@@ -1,0 +1,19 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Values.appName }}-autoscale
+  namespace: {{ .Values.namespace | default "poi-project" }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Values.appName }}-deployment
+  minReplicas: {{ .Values.spec.minReplicas | default 1 }}
+  maxReplicas: {{ .Values.spec.maxReplicas | default 10 }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.metrics.averageUtilization | default 75 }}

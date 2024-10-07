@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}-entrypoint
+  namespace: {{ .Values.namespace | default "poi-project" }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Values.appName }}
+  ports:
+    - port: 3000
+      targetPort: 5000
+      nodePort: {{ .Values.spec.ports.nodePort | default 30002}}
+      {{- if or (lt (int .Values.spec.ports.nodePort) 30000) (gt (int .Values.spec.ports.nodePort) 32767) }}
+        {{- fail "nodePort must be between 30000 and 32767." }}
+      {{- end }}
